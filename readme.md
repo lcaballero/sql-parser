@@ -1,19 +1,6 @@
-# Introduction
+# Summary
 
-**Parses [Sqlite][Sqlite] Only**
-
-Based on the [Sqlite][Sqlite] spec and [Yamljs][Yamljs], this library
-parses a YAML file in the format below, traversing a top level `scripts`
-array, where that scripts array contains objects with a `sql`
-property.
-
-The sql is parsed for variables using the [sqlite-parser][sqlite-parser]
-library and thos variables are added to that object as `vars`.
-Eventually, in production use the varaibles listed can direct code to
-the number and name of each paramter (in order) with respect to making
-a sql call.  Thus elevating these variables from simple placeholders
-to named parameters.
-
+Transforms this:
 
 ```YAML
 ---
@@ -24,11 +11,8 @@ scripts:
 	  select id, title from products where $Price > 10
 ```
 
-After this library processes the YAML it then outputs to Stdout the
-resulting new yaml file which contains a list of variables.  These
-variables can then be used to properly pass named variables to sql scripts.
+into this:
 
-Resulting Yaml with `vars` produced from parsing the sql:
 ```YAML
 ---
 namespace: ""
@@ -41,7 +25,18 @@ scripts:
 	  select id, title from products where $Price > 10
 ```
 
-## Usage
+# Intoduction
+
+This library parses YAML files in the format shown above, traversing a
+top level `scripts` array, where that scripts array contains objects
+with a `sql` property.
+
+The sql is parsed for variables using the [sqlite-parser][sqlite-parser]
+library and those variables are added to that object as `vars`.
+
+The result is output to stdout.
+
+# Usage
 
 ```
 %> sql-parse src/gen-sql.yaml > gen-sql.with-vars.yaml
