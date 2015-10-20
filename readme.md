@@ -2,11 +2,18 @@
 
 **Parses [Sqlite][Sqlite] Only**
 
-Based on the [Sqlite][Sqlite] spec and [Yamljs][Yamljs] this, library
-parses a YAML file in the format below traversing a top level `scripts`
-array, where that scripts array contains objects with a `sql` property.
-The sql is parsed for variables using [sqlite-parser][sqlite-parser]
-library.
+Based on the [Sqlite][Sqlite] spec and [Yamljs][Yamljs], this library
+parses a YAML file in the format below, traversing a top level `scripts`
+array, where that scripts array contains objects with a `sql`
+property.
+
+The sql is parsed for variables using the [sqlite-parser][sqlite-parser]
+library and thos variables are added to that object as `vars`.
+Eventually, in production use the varaibles listed can direct code to
+the number and name of each paramter (in order) with respect to making
+a sql call.  Thus elevating these variables from simple placeholders
+to named parameters.
+
 
 ```YAML
 ---
