@@ -2,10 +2,11 @@
 
 **Parses [Sqlite][Sqlite] Only**
 
-Based on the [Sqlite][Sqlite] and [Yamljs][Yamljs] thie library parse a YAML file in
-this format where there's a top level `scripts` array, and that
-scripts array contains objects with a `sql` property.  The sql is
-parsed for variables using [sqlite-parser][sqlite-parser] library.
+Based on the [Sqlite][Sqlite] spec and [Yamljs][Yamljs] this, library
+parses a YAML file in the format below traversing a top level `scripts`
+array, where that scripts array contains objects with a `sql` property.
+The sql is parsed for variables using [sqlite-parser][sqlite-parser]
+library.
 
 ```YAML
 ---
@@ -18,7 +19,7 @@ scripts:
 
 After this library processes the YAML it then outputs to Stdout the
 resulting new yaml file which contains a list of variables.  These
-variables can then be used to properly pass variables to sql scripts.
+variables can then be used to properly pass named variables to sql scripts.
 
 Resulting Yaml with `vars` produced from parsing the sql:
 ```YAML
