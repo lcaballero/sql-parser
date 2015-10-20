@@ -1,0 +1,32 @@
+{
+  "name": "sql-parse",
+  "version": "0.0.1",
+  "description": "Yaml with sql parsed/processed to include list of sql variables",
+  "author": "lucas.caballero",
+  "main": "index.js",
+  "bin": "index.js",
+  "keywords": [
+    "yaml",
+    "sql",
+    "variables"
+  ],
+  "license": "EPL",
+  "repository": "http://github.com/lucas.caballero/sql-parse.git",
+  "scripts": {
+    "test": "mocha --require tests/lib/globals.coffee --reporter list --compilers coffee:coffee-script/register tests/src"
+  },
+  "dependencies": {
+    "coffee-script": "^1.10.0",
+    "glob": "^5.0.15",
+    "lodash": "^3.10.1",
+    "moment": "^2.10.6",
+    "nject": "^2.0.1",
+    "sqlite-parser": "^0.10.2",
+    "yamljs": "^0.2.4"
+  },
+  "devDependencies": {
+    "chai": "^3.3.0",
+    "gulp": "^3.9.0",
+    "mocha": "^2.3.3"
+  }
+}

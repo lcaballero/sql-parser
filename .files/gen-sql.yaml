@@ -1,0 +1,55 @@
+---
+namespace: Foos
+scripts:
+  - name: create_efforts_table
+    sql: |
+      create table if not exists efforts (
+        id integer not null primary key,
+        title text default '' not null,
+        summary text default '' not null,
+        description text default '' not null,
+        created_by integer not null,
+        created_on text default (strftime('%Y-%m-%d %H:%M:%f', 'now')) not null,
+        updated_by integer not null,
+        updated_on text default (strftime('%Y-%m-%d %H:%M:%f', 'now')) not null,
+        owned_by integer not null,
+        state text not null,
+        record_status integer not null
+      );
+  - name: insert_effort
+    sql: |
+      insert into efforts (
+        title, summary, description, created_by, updated_by,
+        owned_by, state, record_status
+      ) values (
+        $Title, $Summary, $Description, $CreatedBy, $UpdatedBy,
+        $OwnedBy, $State, $RecordStatus
+      );
+  - name: select_all_efforts
+    sql: |
+      select
+        id, title, summary, description,
+        created_by, created_on,
+        updated_by, updated_on,
+        owned_by,
+        state,
+        record_status
+      from efforts;
+  - name: create_users_table
+    sql: |
+      create table if not exists user_acct (
+        id integer not null primary key,
+        username text,
+        password text,
+        salt text,
+        created_on text,
+        record_status int
+      )
+  - name: insert_user
+    sql: |
+      insert into user_acct (
+        username, password, salt, created_on, record_status
+      ) values (
+        $Username, $Password, $Salt, $CreatedOn, $RecordStatus
+      )
+
